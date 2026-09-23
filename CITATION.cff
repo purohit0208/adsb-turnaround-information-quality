@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: adsb-turnaround-information-quality
+message: If you use this software, please cite both the software and the paper.
+type: software
+authors:
+  - given-names: Parth
+    family-names: Purohit
+    email: parth-yogeshbhai.purohit@tu-braunschweig.de
+    affiliation: >-
+      Institute of Flight Guidance, Technische Universität Braunschweig
+    orcid: https://orcid.org/0009-0005-1547-8992
+repository-code: https://github.com/purohit0208/adsb-turnaround-information-quality
+license: MIT
+version: 1.0.0
+date-released: 2026-09-23
+abstract: >-
+  Reproducible pipeline and analysis for a study of how the quality of inbound-status
+  information governs an aircraft-turnaround departure-delay decision, using public US
+  BTS on-time records and public European OpenSky ADS-B data.
+keywords:
+  - aircraft turnaround
+  - delay propagation
+  - information quality
+  - decision support
+  - ADS-B
+  - reproducibility
