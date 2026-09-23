@@ -1,0 +1,22 @@
+statistic,value
+y=1 with attribution,112721.0
+LateAircraftDelay > 0 (%),65.08902511510722
+LateAircraftDelay >= 15 (%),54.93741183985238
+share of delay-minutes: CarrierDelay (%),32.40300399175735
+share of delay-minutes: WeatherDelay (%),5.814513839606679
+share of delay-minutes: NASDelay (%),13.818864089325375
+share of delay-minutes: SecurityDelay (%),0.15999101967896515
+share of delay-minutes: LateAircraftDelay (%),47.80362705963163
+dominant cause: LateAircraftDelay (%),51.86256332005571
+dominant cause: CarrierDelay (%),32.939736162738086
+dominant cause: NASDelay (%),10.331703941590298
+dominant cause: WeatherDelay (%),4.5918684184845775
+dominant cause: SecurityDelay (%),0.2741281571313242
+LateAircraftDelay>0 | inbound >15 late (%),83.47120795803518
+LateAircraftDelay>0 | inbound 0-15 late (%),58.63218781898605
+LateAircraftDelay>0 | inbound early/on time (%),24.942247353722028
+prevalence y_prop 2022_01 (%),6.848488850734112
+prevalence y_prop 2024_01 (%),10.041512655202856
+prevalence y_prop 2024_06 (%),10.976984599676678
+prevalence y_prop 2025_06 (%),12.427478902953586
+prevalence y_prop 2026_01 (%),7.903899196647927

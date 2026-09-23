@@ -1,0 +1,5 @@
+analysis,variant,value
+cross-airport long-turnaround classifier,generic features only,0.7832281880582934
+cross-airport long-turnaround classifier,plus aircraft type,0.8144737598943828
+turnaround-duration regression,generic features only,0.47950121369086407
+turnaround-duration regression,plus aircraft type,0.5583560681050314

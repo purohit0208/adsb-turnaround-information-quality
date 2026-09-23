@@ -1,0 +1,24 @@
+PROTOCOL: SPLIT, HYPERPARAMETERS AND SEEDS (reviewer item 7)
+  Split is by calendar day, not by row position, so no day straddles the boundary.
+    train 2024-06-01 to 2024-06-23  n=435,694
+    test  2024-06-24 to 2024-06-30  n=128,450
+  There is no validation split because no hyperparameter search was performed: the
+  settings {'max_iter': 250, 'learning_rate': 0.1, 'max_depth': 6, 'random_state': 0} were fixed a priori and never tuned
+  against any split. The checks below show the conclusions do not depend on them.
+
+  hyperparameter sensitivity:
+    as published             AUC 0.887  AUPRC 0.851  recall 0.631
+    max_iter=100             AUC 0.885  AUPRC 0.849  recall 0.628
+    max_iter=500             AUC 0.887  AUPRC 0.852  recall 0.634
+    max_depth=3              AUC 0.883  AUPRC 0.846  recall 0.623
+    max_depth=None           AUC 0.887  AUPRC 0.851  recall 0.632
+    learning_rate=0.05       AUC 0.885  AUPRC 0.849  recall 0.630
+
+  seed sensitivity:
+    seed=0                   AUC 0.887  AUPRC 0.851  recall 0.631
+    seed=1                   AUC 0.887  AUPRC 0.851  recall 0.632
+    seed=2                   AUC 0.887  AUPRC 0.851  recall 0.632
+    seed=3                   AUC 0.887  AUPRC 0.851  recall 0.632
+    seed=4                   AUC 0.887  AUPRC 0.851  recall 0.632
+
+  AUC range across every setting and seed: 0.883-0.887

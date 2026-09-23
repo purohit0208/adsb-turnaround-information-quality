@@ -1,0 +1,44 @@
+BTS 2024_06: 564,144 turnarounds, 2024-06-01 to 2024-06-30
+
+(a) COVERAGE AND MEANING OF THE BTS CAUSAL FIELDS
+  outbound legs with a causal decomposition : 138,180 of 564,144 (24.5%)
+  populated when the outbound ARRIVED >=15 late : 100.00% (n=138,180)
+  populated when it arrived on time            : 0.00% (n=425,964)
+  => the decomposition explains ARRIVAL delay and exists only for late ARRIVALS.
+
+(b) HOW MUCH OF THE PRIMARY OUTCOME IS ATTRIBUTABLE TO THE INBOUND AIRCRAFT
+  primary outcome y=1 (next departure >15 late): 135,789 (24.1%)
+  of which a causal decomposition exists for   : 83.0%
+  the remaining 17.0% are, by construction, departures that were late but
+  recovered en route and arrived on time -- the cases with no downstream consequence.
+  LateAircraftDelay > 0   : 65.1%
+  LateAircraftDelay >= 15 : 54.9%
+  share of attributed delay-minutes, by cause:
+    CarrierDelay          32.4%
+    WeatherDelay           5.8%
+    NASDelay              13.8%
+    SecurityDelay          0.2%
+    LateAircraftDelay     47.8%
+  dominant (largest) component, share of y=1 flights:
+    LateAircraftDelay     51.9%
+    CarrierDelay          32.9%
+    NASDelay              10.3%
+    WeatherDelay           4.6%
+    SecurityDelay          0.3%
+
+  conditional on the inbound aircraft's own lateness:
+    inbound >15 late       n= 68,057   LateAircraftDelay>0 in  83.5%
+    inbound 0-15 late      n= 14,695   LateAircraftDelay>0 in  58.6%
+    inbound early/on time  n= 29,003   LateAircraftDelay>0 in  24.9%
+
+(c) PROPAGATION-SPECIFIC SECONDARY OUTCOME
+  y_prop = 1 iff the next departure was >15 min late AND the carrier attributed
+  >=15 min of the resulting arrival delay to a late inbound aircraft.
+    2022_01: n=454,290  prevalence y=18.37%  y_prop= 6.85%  (y_prop / y = 37.3%)
+    2024_01: n=479,131  prevalence y=22.02%  y_prop=10.04%  (y_prop / y = 45.6%)
+    2024_06: n=564,144  prevalence y=24.07%  y_prop=10.98%  (y_prop / y = 45.6%)
+    2025_06: n=561,216  prevalence y=26.33%  y_prop=12.43%  (y_prop / y = 47.2%)
+    2026_01: n=464,429  prevalence y=19.49%  y_prop= 7.90%  (y_prop / y = 40.6%)
+
+  y_prop is a strict subset of y, so it is conservative: every y_prop case is one
+  the carrier itself recorded as caused by the inbound aircraft.

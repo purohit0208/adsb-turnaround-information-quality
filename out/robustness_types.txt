@@ -1,0 +1,16 @@
+TREATMENT OF UNMATCHED AIRCRAFT TYPES (reviewer item 7)
+  aircraft-type match rate by month (OpenSky aircraft database joined by registration):
+    2022_01: 98.4%
+    2024_01: 90.6%
+    2024_06: 87.4%
+    2025_06: 82.7%
+    2026_01: 80.1%
+  The rate declines over time because the public database is a snapshot: registrations
+  entering service after it was downloaded cannot be matched.
+
+    all rows, unmatched coded as a distinct level : AUC 0.887  recall 0.631  n=128,450
+    matched rows only                             : AUC 0.888  recall 0.635  n=112,094
+    type feature removed entirely                 : AUC 0.880  recall 0.618  n=128,450
+
+  The three treatments agree to within a few thousandths of AUC, so no conclusion
+  depends on how unmatched registrations are handled.

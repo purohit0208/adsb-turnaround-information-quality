@@ -1,0 +1,25 @@
+
+==============================================================================
+INFORMATION-SOURCE ABLATION -- outcome y
+==============================================================================
+  full model: features ['inbound_arr_delay', 'sched_turnaround_min', 'sched_hour', 'dow', 'airport_code', 'type_code', 'buffer_pressure']
+  AUC 0.887 (0.884-0.889)  AUPRC 0.851  recall 0.631  precision 0.932  alert rate 19.0%  unflagged delay 27.4%
+    removed inbound_status   (also drops ['inbound_arr_delay', 'buffer_pressure'])
+    removed schedule         (also drops ['sched_turnaround_min', 'buffer_pressure'])
+    removed time_of_day      (also drops ['sched_hour', 'dow'])
+    removed airport          (also drops ['airport_code'])
+    removed aircraft_type    (also drops ['type_code'])
+
+              removed   auc  delta_auc  auprc  recall  precision  recall_matched  unflagged_delay_pct
+       inbound_status 0.731      0.156  0.555   0.146      0.778           0.382               80.217
+             schedule 0.842      0.044  0.759   0.527      0.839           0.553               40.658
+          time_of_day 0.878      0.009  0.841   0.624      0.934           0.629               28.638
+        aircraft_type 0.880      0.007  0.841   0.618      0.917           0.620               28.321
+              airport 0.882      0.005  0.846   0.624      0.932           0.629               27.982
+  (none - full model) 0.887      0.000  0.851   0.631      0.932           0.631               27.429
+
+  For comparison, the INVALID single-feature ablation used in the submitted paper
+  (drop inbound_arr_delay but keep buffer_pressure, which reconstructs it):
+    single-feature drop : AUC 0.887   recall 0.631
+    correct source drop : AUC 0.731   recall 0.146
+    the invalid version understates the loss by 0.156 AUC.

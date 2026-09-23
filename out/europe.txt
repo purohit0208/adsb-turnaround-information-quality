@@ -1,0 +1,63 @@
+1. SCOPE OF THE EUROPEAN SAMPLE
+   2022-01-01: n=28,408  2022-01-01 to 2022-01-14  (13 days)  type match 99.5%  median 101.5 min
+   2024-01-01: n=40,232  2024-01-01 to 2024-01-14  (13 days)  type match 91.5%  median 101.8 min
+   2024-06-01: n=51,803  2024-06-01 to 2024-06-14  (13 days)  type match 88.6%  median 98.4 min
+   2025-06-01: n=52,960  2025-06-01 to 2025-06-14  (13 days)  type match 82.8%  median 100.0 min
+   2026-01-01: n=29,700  2026-01-01 to 2026-01-14  (13 days)  type match 77.6%  median 105.6 min
+   TOTAL 203,103 turnarounds at 8 hubs (submitted manuscript: 203,103 -- reproduces exactly)
+   These are five 14-DAY WINDOWS. The submitted abstract and section 5.1 call them
+   'five months'. That wording must be corrected.
+
+   per-hub turnaround structure (taxi-inclusive ADS-B proxy, so systematically
+   longer than the US gate-to-gate figures):
+                n  median   q25    q75
+   airport                            
+   EDDF     28262   109.9  85.7  165.7
+   EDDM     21151    89.5  73.6  124.4
+   EGLL     28118   122.3  92.0  180.3
+   EHAM     31778    95.7  76.4  142.3
+   LEMD     25189   100.8  82.7  142.0
+   LFPG     31241   107.5  85.3  172.5
+   LIRF     21834    94.7  80.5  127.5
+   LSZH     15530    76.8  61.0  109.9
+
+2. RE-AUDIT OF THE PUBLISHED PROPAGATION CLAIM (submitted: r = 0.31)
+   gap filter                    n     pooled r   within-route r
+   none (as submitted)     25,363      0.210           0.066
+   gap < 24 h              24,217      0.146           0.041
+   gap < 12 h              21,332     -0.004          -0.024
+   gap < 6 h               21,038     -0.028          -0.030
+   gap < 3 h               20,834     -0.029          -0.031
+
+   within-route r at gap < 12 h = -0.024, 95% bootstrap CI -0.038 to -0.009
+   69% of the published association is between-route composition; the remainder is carried by
+   pairs 16% of which are separated by more than 12 hours, i.e. the aircraft
+   left the eight sampled hubs and returned later. These are not consecutive legs.
+   CONCLUSION: the European propagation claim is withdrawn.
+
+3. RE-AUDIT OF THE PUBLISHED EUROPEAN DRIFT CLAIM (submitted: AUC 0.79-0.85)
+   A: label threshold and frequency maps estimated WITHIN each window (clean)
+   B: estimated ONCE across all five windows, test windows included (leaky)
+
+   window         A (clean)  B (leaky)
+   2022-01-01         0.606      0.750
+   2024-01-01         0.630      0.798
+   2024-06-01         0.833      0.850   <- in-distribution
+   2025-06-01         0.650      0.832
+   2026-01-01         0.611      0.764
+   The submitted 0.79-0.85 corresponds to protocol B. Under protocol A the model
+   does not transfer across windows. The stability claim is therefore not supported.
+
+4. RESULTS THAT DO SURVIVE
+   cross-airport classifier, generic features only  AUC 0.783   (submitted: 0.78)
+   cross-airport classifier, plus aircraft type     AUC 0.814   (submitted: 0.81)
+   duration regression,      generic features only  R2  0.480   (submitted: 0.45)
+   duration regression,      plus aircraft type     R2  0.558   (submitted: 0.55)
+
+5. WHY THE INFORMATION-DEGRADATION EXPERIMENTS CANNOT BE REPEATED IN EUROPE
+   Degrading an inbound-status signal requires one to exist. OpenSky carries no
+   schedules, so the only candidate is the aircraft's own previous ground stop,
+   observable for 21,332 of 203,103 turnarounds (10.5%) because only
+   eight hubs are sampled. Its association with the outcome is -0.024.
+   There is no signal of any strength to degrade, so the core experiment of this
+   paper has no European counterpart in this dataset.

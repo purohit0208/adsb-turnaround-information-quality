@@ -1,0 +1,13 @@
+TEMPORAL TRANSFER: train on June 2024 (1-23), test out of time
+  2022_01: n=454,290  prevalence 18.37%  AUC 0.830 (0.828-0.832)  AUPRC 0.726  recall 0.531  precision 0.857  alert 11.38%  ECE 0.018
+  2024_01: n=479,131  prevalence 22.02%  AUC 0.861 (0.860-0.863)  AUPRC 0.796  recall 0.600  precision 0.895  alert 14.76%  ECE 0.012
+  2024_06: n=128,450  prevalence 28.08%  AUC 0.882 (0.880-0.885)  AUPRC 0.846  recall 0.624  precision 0.932  alert 18.82%  ECE 0.015
+  2025_06: n=561,216  prevalence 26.33%  AUC 0.876 (0.875-0.878)  AUPRC 0.829  recall 0.611  precision 0.916  alert 17.57%  ECE 0.009
+  2026_01: n=464,429  prevalence 19.49%  AUC 0.856 (0.854-0.857)  AUPRC 0.771  recall 0.588  precision 0.864  alert 13.26%  ECE 0.022
+
+  AUC: in-distribution 0.882; out-of-time 0.830-0.876
+  AUPRC: in-distribution 0.846; out-of-time 0.726-0.829
+  prevalence: in-distribution 28.08%; out-of-time 18.37-26.33%
+  ECE: in-distribution 0.015; out-of-time 0.009-0.022
+  Discrimination is stable; calibration and the realised alert rate are not, which is
+  why the remediation comparison below is needed rather than assumed.

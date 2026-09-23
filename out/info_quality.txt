@@ -1,0 +1,84 @@
+
+==============================================================================
+OUTCOME: y
+==============================================================================
+  train 435,694 (2024-06-01 to 2024-06-23)  |  test 128,450 (2024-06-24 to 2024-06-30)
+  test prevalence 28.08%   features: ['inbound_arr_delay', 'sched_turnaround_min', 'sched_hour', 'dow', 'airport_code', 'type_code', 'buffer_pressure']
+
+  clean model: AUC 0.887 (95% CI 0.884-0.889)  AUPRC 0.851  ECE 0.015  Brier 0.092
+               at thr 0.5: recall 0.631  precision 0.932  alert rate 19.0%
+  rule baseline (inbound delay > scheduled turnaround): fires 9.0%  recall 0.305  precision 0.947
+  coarse-bucket representative values (training-set medians): early or on time -> -12, minor (0-15 min) -> 6, moderate (15-60 min) -> 30, major (over 60 min) -> 103
+
+  AT THE FIXED 0.5 THRESHOLD (as published)
+                  condition   auc  auprc  recall  precision  alert_rate  flip_vs_clean  unflagged_delay_pct
+                      clean 0.887  0.851   0.631      0.932       0.190          0.000               27.429
+             noise sd=5 min 0.882  0.843   0.631      0.905       0.196          0.022               27.518
+            noise sd=10 min 0.871  0.820   0.623      0.850       0.206          0.048               27.650
+            noise sd=20 min 0.836  0.746   0.610      0.711       0.241          0.105               28.305
+            noise sd=40 min 0.769  0.580   0.591      0.552       0.301          0.195               29.537
+  coarse status (4 buckets) 0.878  0.828   0.602      0.898       0.188          0.033               30.748
+     missing, mean fallback 0.700  0.512   0.190      0.618       0.086          0.180               76.507
+   missing, model retrained 0.731  0.555   0.146      0.778       0.053          0.164               80.217
+
+  AT A MATCHED ALARM BUDGET (every condition issues 19.0% alerts)
+                  condition  thr_matched  recall_matched  precision_matched  unflagged_delay_pct_matched
+                      clean        0.500           0.631              0.932                       27.429
+             noise sd=5 min        0.538           0.620              0.916                       28.183
+            noise sd=10 min        0.607           0.597              0.881                       29.532
+            noise sd=20 min        0.832           0.535              0.789                       34.226
+            noise sd=40 min        0.993           0.441              0.651                       43.244
+  coarse status (4 buckets)        0.479           0.606              0.894                       30.403
+     missing, mean fallback        0.359           0.342              0.505                       62.591
+   missing, model retrained        0.351           0.382              0.563                       57.947
+
+  READING:
+    noise sd=40 : AUC 0.769 vs clean 0.887; recall holds (0.591) but precision falls to 0.552
+    coarse      : AUC 0.878, recall 0.602, 3.3% of decisions change
+    missing     : AUC 0.700 (fallback) / 0.731 (retrained) vs clean 0.887
+                  recall at 0.5:      0.190 / 0.146  vs clean 0.631
+                  recall at matched:  0.342 / 0.382  vs clean 0.631
+    => of the recall drop at a fixed threshold, 0.442 total, 0.153 is recovered simply by re-setting the
+       threshold. The remainder is a genuine loss of discrimination.
+
+==============================================================================
+OUTCOME: y_prop
+==============================================================================
+  train 435,694 (2024-06-01 to 2024-06-23)  |  test 128,450 (2024-06-24 to 2024-06-30)
+  test prevalence 13.71%   features: ['inbound_arr_delay', 'sched_turnaround_min', 'sched_hour', 'dow', 'airport_code', 'type_code', 'buffer_pressure']
+
+  clean model: AUC 0.985 (95% CI 0.985-0.986)  AUPRC 0.919  ECE 0.005  Brier 0.031
+               at thr 0.5: recall 0.831  precision 0.854  alert rate 13.3%
+  rule baseline (inbound delay > scheduled turnaround): fires 9.0%  recall 0.527  precision 0.799
+  coarse-bucket representative values (training-set medians): early or on time -> -12, minor (0-15 min) -> 6, moderate (15-60 min) -> 30, major (over 60 min) -> 103
+
+  AT THE FIXED 0.5 THRESHOLD (as published)
+                  condition   auc  auprc  recall  precision  alert_rate  flip_vs_clean  unflagged_delay_pct
+                      clean 0.985  0.919   0.831      0.854       0.133          0.000               12.729
+             noise sd=5 min 0.982  0.907   0.831      0.831       0.137          0.015               12.725
+            noise sd=10 min 0.974  0.872   0.809      0.781       0.142          0.031               14.046
+            noise sd=20 min 0.940  0.739   0.777      0.629       0.169          0.073               15.916
+            noise sd=40 min 0.859  0.470   0.719      0.427       0.231          0.157               19.875
+  coarse status (4 buckets) 0.971  0.859   0.792      0.770       0.141          0.042               17.437
+     missing, mean fallback 0.709  0.326   0.115      0.679       0.023          0.121               84.415
+   missing, model retrained 0.773  0.393   0.101      0.768       0.018          0.121               86.127
+
+  AT A MATCHED ALARM BUDGET (every condition issues 13.3% alerts)
+                  condition  thr_matched  recall_matched  precision_matched  unflagged_delay_pct_matched
+                      clean        0.500           0.831              0.854                       12.729
+             noise sd=5 min        0.527           0.818              0.840                       13.657
+            noise sd=10 min        0.561           0.782              0.803                       16.150
+            noise sd=20 min        0.692           0.684              0.703                       24.158
+            noise sd=40 min        0.876           0.504              0.518                       42.025
+  coarse status (4 buckets)        0.546           0.764              0.785                       19.575
+     missing, mean fallback        0.022           0.296              0.304                       67.097
+   missing, model retrained        0.214           0.372              0.382                       60.570
+
+  READING:
+    noise sd=40 : AUC 0.859 vs clean 0.985; recall holds (0.719) but precision falls to 0.427
+    coarse      : AUC 0.971, recall 0.792, 4.2% of decisions change
+    missing     : AUC 0.709 (fallback) / 0.773 (retrained) vs clean 0.985
+                  recall at 0.5:      0.115 / 0.101  vs clean 0.831
+                  recall at matched:  0.296 / 0.372  vs clean 0.831
+    => of the recall drop at a fixed threshold, 0.716 total, 0.181 is recovered simply by re-setting the
+       threshold. The remainder is a genuine loss of discrimination.

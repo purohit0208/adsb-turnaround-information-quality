@@ -1,0 +1,12 @@
+SENSITIVITY TO THE RETAINED-TURNAROUND BOUNDS
+  The submitted pipeline retained turnarounds of 20-720 minutes. Actual ground time
+  is mechanically lengthened by a late outbound departure, so this filter conditions
+  on a quantity correlated with the outcome. Rebuilt with bounds 1-1440 min and
+  re-subset, to show the headline does not depend on it.
+    bounds [ 20, 720]: n=564,144  prevalence 28.08%  AUC 0.887  AUPRC 0.851  recall 0.631  precision 0.932
+    bounds [ 10,1440]: n=586,818  prevalence 28.28%  AUC 0.879  AUPRC 0.839  recall 0.610  precision 0.918
+    bounds [ 30, 480]: n=503,581  prevalence 28.88%  AUC 0.896  AUPRC 0.866  recall 0.655  precision 0.937
+    bounds [  1,1440]: n=586,903  prevalence 28.28%  AUC 0.880  AUPRC 0.839  recall 0.610  precision 0.919
+    bounds [ 45, 300]: n=386,619  prevalence 30.14%  AUC 0.893  AUPRC 0.867  recall 0.661  precision 0.935
+
+  AUC across all bound choices: 0.879-0.896 (spread 0.017). The finding is not an artefact of the filter.

@@ -9,9 +9,13 @@ authors:
     affiliation: >-
       Institute of Flight Guidance, Technische Universität Braunschweig
     orcid: https://orcid.org/0009-0005-1547-8992
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22917205
+    description: Archived snapshot of this repository
 repository-code: https://github.com/purohit0208/adsb-turnaround-information-quality
 license: MIT
-version: 1.0.0
+version: 1.0.1
 date-released: 2026-09-23
 abstract: >-
   Reproducible pipeline and analysis for a study of how the quality of inbound-status

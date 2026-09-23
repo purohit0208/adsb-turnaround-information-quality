@@ -1,0 +1,19 @@
+VALIDATION AGAINST OPERATIONAL CONDITIONS (reviewer item 1, third element)
+  The referee asked for the outcome to be validated against delay causes, schedule
+  buffers AND operational conditions. A fair objection to the buffer-absorption
+  evidence is that it might simply track disrupted days: on a bad-weather or
+  high-ATFM day everything is late, inbound and outbound alike, and the apparent
+  buffer mechanism would be spurious. We therefore build a daily disruption index
+  from the BTS causal fields and test whether the relationship survives within strata.
+
+  airport-days with at least 20 attributed departures; disruption tertiles at 0.42 and 0.53
+
+  stratum          n  disruption  P(y) exceeds  P(y) fits   ratio     AUC
+  low        143,937        0.35         93.5%      19.6%     4.8   0.889
+  medium     143,802        0.48         93.4%      19.7%     4.8   0.877
+  high       143,802        0.63         92.9%      21.9%     4.3   0.882
+
+  The buffer relationship holds with a similar ratio inside every disruption stratum,
+  and discrimination is stable across them, so the outcome is not merely tracking
+  disrupted days. Overall prevalence does rise with disruption, which is expected and
+  is exactly the base-rate shift that the per-airport calibration analysis addresses.

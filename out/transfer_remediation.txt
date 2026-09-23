@@ -1,0 +1,52 @@
+DOES RECALIBRATION SUFFICE? three remedies on held-out target data
+  Source model: all other airports. Target airport data is split in time; the first
+  70% is the adaptation set (threshold / calibrator / retraining), the last 30% is
+  held out for evaluation. Every remedy is therefore judged on data none of them saw.
+  ATL (n_eval=8,197, prevalence 26.1%)
+    none        recall 0.524 precision 0.949 alert  14.4%  ECE 0.025
+    threshold   recall 0.651 precision 0.715 alert  23.8%
+    recalibrate recall 0.524 precision 0.949 alert  14.4%  ECE 0.033
+    retrain     recall 0.545 precision 0.929 alert  15.3%  ECE 0.034  AUC 0.858 vs source 0.852
+  DEN (n_eval=7,776, prevalence 28.7%)
+    none        recall 0.582 precision 0.939 alert  17.8%  ECE 0.026
+    threshold   recall 0.509 precision 0.983 alert  14.9%
+    recalibrate recall 0.597 precision 0.917 alert  18.7%  ECE 0.009
+    retrain     recall 0.596 precision 0.913 alert  18.8%  ECE 0.008  AUC 0.863 vs source 0.865
+  DFW (n_eval=7,539, prevalence 32.3%)
+    none        recall 0.608 precision 0.914 alert  21.5%  ECE 0.028
+    threshold   recall 0.444 precision 0.998 alert  14.3%
+    recalibrate recall 0.670 precision 0.862 alert  25.1%  ECE 0.016
+    retrain     recall 0.658 precision 0.898 alert  23.6%  ECE 0.020  AUC 0.880 vs source 0.878
+  ORD (n_eval=6,567, prevalence 33.9%)
+    none        recall 0.636 precision 0.930 alert  23.1%  ECE 0.033
+    threshold   recall 0.622 precision 0.947 alert  22.2%
+    recalibrate recall 0.608 precision 0.955 alert  21.6%  ECE 0.028
+    retrain     recall 0.623 precision 0.946 alert  22.3%  ECE 0.026  AUC 0.859 vs source 0.864
+  CLT (n_eval=5,218, prevalence 33.2%)
+    none        recall 0.618 precision 0.938 alert  21.8%  ECE 0.030
+    threshold   recall 0.575 precision 0.969 alert  19.7%
+    recalibrate recall 0.640 precision 0.922 alert  23.0%  ECE 0.018
+    retrain     recall 0.644 precision 0.915 alert  23.4%  ECE 0.020  AUC 0.893 vs source 0.891
+  LAX (n_eval=4,536, prevalence 22.9%)
+    none        recall 0.608 precision 0.938 alert  14.8%  ECE 0.020
+    threshold   recall 0.671 precision 0.815 alert  18.8%
+    recalibrate recall 0.580 precision 0.969 alert  13.7%  ECE 0.007
+    retrain     recall 0.623 precision 0.922 alert  15.5%  ECE 0.010  AUC 0.866 vs source 0.869
+  LAS (n_eval=4,499, prevalence 30.6%)
+    none        recall 0.601 precision 0.924 alert  19.9%  ECE 0.028
+    threshold   recall 0.555 precision 0.956 alert  17.8%
+    recalibrate recall 0.604 precision 0.918 alert  20.1%  ECE 0.022
+    retrain     recall 0.606 precision 0.913 alert  20.3%  ECE 0.021  AUC 0.858 vs source 0.867
+  SEA (n_eval=4,286, prevalence 26.6%)
+    none        recall 0.548 precision 0.937 alert  15.6%  ECE 0.020
+    threshold   recall 0.574 precision 0.900 alert  17.0%
+    recalibrate recall 0.558 precision 0.914 alert  16.3%  ECE 0.014
+    retrain     recall 0.587 precision 0.890 alert  17.6%  ECE 0.025  AUC 0.847 vs source 0.854
+
+  MEANS ACROSS HUBS
+    none      recall 0.591  precision 0.934  alert  18.6%
+    thr       recall 0.575  precision 0.910  alert  18.6%
+    cal       recall 0.598  precision 0.926  alert  19.1%
+    retrain   recall 0.610  precision 0.916  alert  19.6%
+    AUC: source-transferred 0.868 vs locally retrained 0.866 (difference -0.002)
+    ECE: uncorrected 0.026, recalibrated 0.018, retrained 0.021
